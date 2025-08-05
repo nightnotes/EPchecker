@@ -3,24 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Night Notes - Login</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Night Notes – Releases</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <div class="login-container">
-    <div class="login-card">
-      <div class="logo"><img src="Logo nightnotes.png" alt="Night Notes logo"></div>
-      <h1>Welkom CEO</h1>
-      <form id="login-form">
-        <label for="username">Gebruikersnaam</label>
-        <input type="text" id="username" placeholder="Voer je gebruikersnaam in" required>
-        <label for="password">Wachtwoord</label>
-        <input type="password" id="password" placeholder="Voer je wachtwoord in" required>
-        <button type="submit">Log-in</button>
-      </form>
-      <p class="error" id="error"></p>
-    </div>
-  </div>
-  <script src="script.js" defer></script>
+  <h1>Releases</h1>
+
+  <table id="releasesTable">
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Titel</th>
+        <th>Artiest</th>
+        <th>Distributie</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- 1. importeer de release data -->
+  <script type="module">
+    import releaseSchedule from "../release_schedule_combined.js";
+    window.releaseSchedule = releaseSchedule;
+  </script>
+
+  <!-- 2. laad het script dat de tabel vult -->
+  <script type="module" src="../script.js"></script>
 </body>
 </html>
