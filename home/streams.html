@@ -10,25 +10,23 @@
 </head>
 <body>
   <header class="header">
-    <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes logo" class="header-logo"></div>
+    <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes logo"></div>
     <nav>
-      <button class="nav-btn" onclick="location.href='index.html'">Releases</button>
-      <button class="nav-btn" onclick="location.href='ep_checklist.html'">EP CHECKLIST</button>
-      <button class="nav-btn" onclick="location.href='artworks.html'">ARTWORKS</button>
-      <button class="nav-btn" onclick="location.href='advertentiebeheer.html'">ADVERTENTIEBEHEER</button>
+      <button class="nav-btn" onclick="location.href='index.html'">RELEASES</button>
+      <button class="nav-btn" onclick="location.href='../ep_checklist.html'">EP CHECKLIST</button>
+      <button class="nav-btn" onclick="location.href='../artworks.html'">ARTWORKS</button>
+      <button class="nav-btn" onclick="location.href='../advertentiebeheer.html'">ADVERTENTIEBEHEER</button>
       <button class="nav-btn active">STREAMS</button>
     </nav>
   </header>
   <main class="content-panel">
     <h1>Streams per Dag</h1>
-    <div class="table-container">
-      <canvas id="streamsChart"></canvas>
-    </div>
     <div class="month-controls">
       <button id="prevMonth">← Vorige maand</button>
       <span id="currentMonth"></span>
       <button id="nextMonth">Volgende maand →</button>
     </div>
+    <canvas id="streamsChart"></canvas>
   </main>
 </body>
 </html>
