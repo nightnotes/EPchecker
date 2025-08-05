@@ -1,2 +1,2 @@
 // home/home.js
-// (rawEntries array and functionality as in canvas)
+// Je rawEntries array en functies staan hier zoals in de canvas.
