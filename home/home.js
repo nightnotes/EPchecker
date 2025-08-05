@@ -1,51 +1,59 @@
-const data = [
-  { date:'15-08-2025', name:'Luna Nights',  who:'Martijn', dist:'Distrokid', done:false },
-  { date:'16-08-2025', name:'Ava Willow',   who:'Martijn', dist:'Distrokid', done:false },
-  { date:'17-08-2025', name:'Sleepy Delrow',who:'Nuno',    dist:'Distrokid', done:false },
-  { date:'18-08-2025', name:'Motionless',   who:'Martijn', dist:'Distrokid', done:false },
-  { date:'19-08-2025', name:'Loomy',        who:'Nuno',    dist:'Distrokid', done:false },
-  { date:'20-08-2025', name:'Lila Serene',  who:'Nuno',    dist:'Distrokid', done:false },
-  { date:'21-08-2025', name:'Soft Dawn',    who:'Nuno',    dist:'Distrokid', done:false },
-  { date:'22-08-2025', name:'Nunery Dream', who:'Nuno',    dist:'Distrokid', done:false },
-  { date:'23-08-2025', name:'Celestine Viora',who:'Nuno', dist:'Distrokid', done:false },
-  { date:'24-08-2025', name:'Ludo Legato',  who:'Martijn', dist:'Distrokid', done:false }
+// home/home.js
+const rawEntries = [
+  ['15-08-2025','Luna Nights','Martijn','Distrokid'],
+  ['16-08-2025','Ava Willow','Martijn','Distrokid'],
+  ['17-08-2025','Sleepy Delrow','Nuno','Distrokid'],
+  ['18-08-2025','Motionless','Martijn','Distrokid'],
+  ['19-08-2025','Loomy','Nuno','Distrokid'],
+  ['20-08-2025','Lila Serene','Nuno','Distrokid'],
+  ['21-08-2025','Soft Dawn','Nuno','Distrokid'],
+  ['22-08-2025','Nunery Dream','Nuno','Distrokid'],
+  ['23-08-2025','Celestine Viora','Nuno','Distrokid'],
+  ['24-08-2025','Ludo Legato','Martijn','Distrokid'],
+  ['25-08-2025','Muted Mind','Nuno','Distrokid'],
+  ['26-08-2025','Swooshy','Nuno','Distrokid'],
+  ['27-08-2025','Evelyn Winter','Martijnt','Distrokid'],
+  ['28-08-2025','Krople','Martijnt','Distrokid'],
+  ['29-08-2025','Katty','Martijnt','Distrokid'],
+  ['30-08-2025','Sophia Vale','Martijnt','Distrokid'],
+  ['31-08-2025','Domindo Nuni','Martijnt','Distrokid'],
+  ['01-09-2025','Motionless','Martijnt','Distrokid'],
+  ['02-09-2025','Loomy','Nuno','Distrokid'],
+  ['03-09-2025','Eleanor Moon','Nuno','Distrokid'],
+  ['04-09-2025','Luna Nights','Martijnt','Distrokid'],
+  ['05-09-2025','Ava Willow','Martijnt','Distrokid'],
+  ['06-09-2025','Sleepy Delrow','Nuno','Distrokid'],
+  ['07-09-2025','Lila Serene','Nuno','Distrokid'],
+  ['08-09-2025','Muted Mind','Nuno','Distrokid'],
+  ['09-09-2025','Swooshy','Nuno','Distrokid'],
+  ['10-09-2025','Soft Dawn','Nuno','Distrokid'],
+  ['11-09-2025','Nunery Dream','Nuno','Distrokid'],
+  ['12-09-2025','Celestine Viora','Nuno','Distrokid'],
+  ['13-09-2025','Ludo Legato','Martijnt','Distrokid'],
+  ['14-09-2025','Evelyn Winter','Martijnt','Distrokid'],
+  ['15-09-2025','Motionless','Martijnt','Distrokid'],
+  ['16-09-2025','Loomy','Nuno','Distrokid'],
+  ['17-09-2025','Katty','Martijnt','Distrokid'],
+  ['18-09-2025','Sophia Vale','Martijnt','Distrokid'],
+  ['19-09-2025','Domindo Nuni','Martijnt','Distrokid'],
+  ['20-09-2025','Eleanor Moon','Nuno','Distrokid'],
+  ['21-09-2025','Luna Nights','Martijnt','Distrokid'],
+  ['22-09-2025','Ava Willow','Martijnt','Distrokid'],
+  ['23-09-2025','Sleepy Delrow','Nuno','Distrokid'],
+  ['24-09-2025','Lila Serene','Nuno','Distrokid'],
+  ['25-09-2025','Soft Dawn','Nuno','Distrokid'],
+  ['26-09-2025','Nunery Dream','Nuno','Distrokid'],
+  ['27-09-2025','Celestine Viora','Nuno','Distrokid'],
+  ['28-09-2025','Ludo Legato','Martijnt','Distrokid'],
+  ['29-09-2025','Muted Mind','Nuno','Distrokid'],
+  ['30-09-2025','Swooshy','Nuno','Distrokid'],  
+  ['01-10-2025','Evelyn Winter','Martijnt','Distrokid'],
+  ['02-10-2025','Krople','Martijnt','Distrokid'],  
+  ['31-12-2025','Luna Nights','Martijnt','Distrokid']
 ];
 
-function renderCal() {
-  const body= document.getElementById('cal-body'); body.innerHTML='';
-  data.forEach(d=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${d.date}</td><td>${d.name}</td><td>${d.who}</td><td>${d.dist}</td><td><input type='checkbox' ${d.done?'checked':''}></td>`;
-    body.appendChild(tr);
-  });
-}
+const data = rawEntries.map(([date,name,who,dist]) => ({ date, name, who, dist, done:false }));
 
-function nextTask() {
-  const user = localStorage.getItem('user');
-  const pending = data.filter(d=>d.who===user && !d.done);
-  if (pending.length) {
-    const t = pending[0];
-    document.getElementById('t-date').textContent=t.date;
-    document.getElementById('t-name').textContent=t.name;
-    document.getElementById('t-who').textContent=t.who;
-    document.getElementById('t-dist').textContent=t.dist;
-    const cb=document.getElementById('t-check'); cb.checked=false;
-    cb.onchange=()=>{t.done=true; nextTask();};
-  }
-}
-
-document.addEventListener('DOMContentLoaded', ()=>{
-  renderCal(); nextTask();
-  document.getElementById('view-cal').onclick=()=>{
-    document.getElementById('calendar').classList.remove('hidden');
-    document.getElementById('tasks').classList.add('hidden');
-    document.getElementById('view-cal').classList.add('active');
-    document.getElementById('view-tasks').classList.remove('active');
-  };
-  document.getElementById('view-tasks').onclick=()=>{
-    document.getElementById('tasks').classList.remove('hidden');
-    document.getElementById('calendar').classList.add('hidden');
-    document.getElementById('view-tasks').classList.add('active');
-    document.getElementById('view-cal').classList.remove('active');
-  };
-});
+function renderCal(){const body=document.getElementById('cal-body');body.innerHTML='';data.forEach(d=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${d.date}</td><td>${d.name}</td><td>${d.who}</td><td>${d.dist}</td><td><input type='checkbox' ${d.done?'checked':''}></td>`;body.appendChild(tr);});}
+function nextTask(){const user=localStorage.getItem('user');const pending=data.filter(d=>d.who===user&&!d.done);if(pending.length){const t=pending[0];document.getElementById('t-date').textContent=t.date;document.getElementById('t-name').textContent=t.name;document.getElementById('t-who').textContent=t.who;document.getElementById('t-dist').textContent=t.dist;const cb=document.getElementById('t-check');cb.checked=false;cb.onchange=()=>{t.done=true;nextTask();};}}
+document.addEventListener('DOMContentLoaded',()=>{renderCal();nextTask();document.getElementById('view-cal').onclick=()=>{document.getElementById('calendar').classList.remove('hidden');document.getElementById('tasks').classList.add('hidden');document.getElementById('view-cal').classList.add('active');document.getElementById('view-tasks').classList.remove('active');};document.getElementById('view-tasks').onclick=()=>{document.getElementById('tasks').classList.remove('hidden');document.getElementById('calendar').classList.add('hidden');document.getElementById('view-tasks').classList.add('active');document.getElementById('view-cal').classList.remove('active');};});
