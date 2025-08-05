@@ -64,7 +64,6 @@ function nextTask(data) {
 
   if (!pending.length) {
     row.innerHTML = '<tr><td colspan="7">Geen openstaande taken 🎉</td></tr>';
-    showCongrats();
     renderLastCompleted(data);
     return;
   }
@@ -87,6 +86,7 @@ function nextTask(data) {
       t[key] = e.target.checked;
       persistState(t);
       if (key==='done' && t.done) {
+        showCongrats();
         setLastCompleted(t.id);
         renderLastCompleted(data);
         renderCal(data);
