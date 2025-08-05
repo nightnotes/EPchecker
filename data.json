@@ -1,4 +1,4 @@
-const releaseSchedule = [
+[
 ["25-08-2025", "Muted Mind", "Nuno", "Distrokid"],
 ["25-08-2025", "Dreamflow", "Nuno", "Amuse"],
 ["26-08-2025", "Swooshy", "Nuno", "Distrokid"],
@@ -193,5 +193,3 @@ const releaseSchedule = [
 ["31-12-2025", "Luna Nights", "Martijn", "Distrokid"],
 ["31-12-2025", "Doris Lost", "Nuno", "Amuse"],
 ];
-
-export default releaseSchedule;
