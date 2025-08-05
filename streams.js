@@ -11,10 +11,10 @@ const artistIds = ['7sWJR3GtdK9Jr09w5Nh16B', '00qvWOgeQtQf4XcxJM6DzU', '4ByXb0wa
   '4cGEMRW0A7PAZcovV3S8KT'];
 
 let selectedMonth = new Date();
+document.addEventListener('DOMContentLoaded', updateChart);
 const ctx = document.getElementById('streamsChart').getContext('2d');
 let chart;
 
-document.addEventListener('DOMContentLoaded', updateChart);
 document.getElementById('prevMonth').addEventListener('click', () => {
   selectedMonth.setMonth(selectedMonth.getMonth() - 1);
   updateChart();
