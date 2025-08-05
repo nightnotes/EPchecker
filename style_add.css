@@ -1,15 +1,14 @@
-/* ------- Extra styles: undo-balk & logout-knop -------- */
-.last-completed { margin-top: 8px; font-size: 0.9rem; }
-.last-completed.hidden { display: none; }
-.last-completed button { margin-left: 8px; padding: 2px 6px; font-size: 0.8rem; }
-
-.logout-btn {
-  margin-left: 12px;
+/* links-bar styles */
+.links-bar {
+  margin: 8px 0 16px 0;
+}
+.links-bar a {
+  margin-right: 8px;
   background: #444c9c;
-  border: none;
-  color: #fff;
   padding: 6px 12px;
   border-radius: 4px;
-  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }
-.logout-btn:hover { background: #5a62c6; }
+.links-bar a:hover { background:#5a62c6; }
