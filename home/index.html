@@ -3,64 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Night Notes - Overzicht</title>
+  <title>Night Notes – Overzicht</title>
+
+  <!-- koppel aan bestaande stylesheet -->
   <link rel="stylesheet" href="../style.css">
+
+  <!-- eenvoudige fallback-styling; verwijder gerust als style.css alles al doet -->
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
+    section { padding: 1rem 2rem; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 6px 8px; }
+    th { text-align: left; }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes logo" class="header-logo"></div>
+  <header>
     <nav>
-      <button id="view-cal" class="active">RELEASES</button>
-      <button id="view-tasks">EP CHECKLIST</button>
-      <button id="view-artworks">ARTWORKS</button>
+      <ul>
+        <li><a href="#releases">RELEASES</a></li>
+        <li><a href="#ep-checklist">EP CHECKLIST</a></li>
+        <li><a href="#artworks">ARTWORKS</a></li>
+      </ul>
     </nav>
-    <div class="welcome">Welkom <span id="user"></span></div>
   </header>
-  <main>
-    <section id="calendar" class="content-panel">
-      <div class="table-container">
-        <table class="calendar-table">
-          <thead>
-            <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th></tr>
-          </thead>
-          <tbody id="cal-body"></tbody>
-        </table>
-      </div>
-    </section>
-    <section id="tasks" class="content-panel hidden">
-      <div class="table-container">
-        <table class="checklist-table">
-          <thead>
-            <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Splits</th><th>Buma/Stemra</th><th>Klaar</th></tr>
-          </thead>
-          <tbody>
-            <tr id="task-row">
-              <td id="t-date"></td>
-              <td id="t-name"></td>
-              <td id="t-who"></td>
-              <td id="t-dist"></td>
-              <td><input type="checkbox" id="t-splits"></td>
-              <td><input type="checkbox" id="t-buma"></td>
-              <td><input type="checkbox" id="t-check"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-  <script src="home.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      renderCal(); nextTask();
-      document.getElementById('view-cal').onclick = () => { showSection('calendar'); };
-      document.getElementById('view-tasks').onclick = () => { showSection('tasks'); };
-      document.getElementById('view-artworks').onclick = () => { window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank'); };
-      document.getElementById('user').textContent = localStorage.getItem('user');
-    });
-    function showSection(id) {
-      ['calendar','tasks'].forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.toggle('active', btn.id === 'view-' + id));
-    }
+
+  <section id="releases">
+    <h2>Releases</h2>
+    <table id="releasesTable">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Titel</th>
+          <th>Artiest</th>
+          <th>Distributie</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section id="ep-checklist">
+    <h2>EP Checklist</h2>
+    <p>Checklist‑sectie in opbouw…</p>
+  </section>
+
+  <section id="artworks">
+    <h2>Artworks</h2>
+    <p>Artworks‑sectie in opbouw…</p>
+  </section>
+
+  <!-- laadt de releases-data en het script -->
+  <script type="module">
+    import releaseSchedule from "../release_schedule_combined.js";
+    window.releaseSchedule = releaseSchedule;
   </script>
+  <script type="module" src="../script.js"></script>
 </body>
 </html>
