@@ -41,9 +41,14 @@ main { padding: 20px; }
 .content-panel { max-width: 900px; margin: 20px auto; background: #222; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
 .table-container { overflow-x: auto; }
 .calendar-table, .checklist-table { width: 100%; border-collapse: collapse; }
-.calendar-table th, .calendar-table td, .checklist-table th, .checklist-table td { padding: 10px; border-bottom: 1px solid #333; text-align: center; vertical-align: middle; }
+.calendar-table th, .calendar-table td, .checklist-table th, .checklist-table td { padding: 10px; border-bottom: 1px solid #333; text-align: center; }
 .calendar-table thead th, .checklist-table thead th { background: #3e3b78; position: sticky; top: 0; }
 .status-dot { width: 16px; height: 16px; border-radius: 50%; display: inline-block; }
 .status-pending { background: red; }
 .status-done { background: green; }
 .hidden { display: none; }
+
+#task { display: flex; align-items: center; gap: 10px; }
+#task span { color: #fff; font-size: 1rem; }
+#task label { display: flex; align-items: center; gap: 5px; }
+#task input[type="checkbox"] { width: 20px; height: 20px; accent-color: #4a47a3; }

@@ -33,29 +33,33 @@
           <thead>
             <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Splits</th><th>Buma/Stemra</th><th>Klaar</th></tr>
           </thead>
-          <tbody id="task-row"></tbody>
+          <tbody>
+            <tr id="task-row">
+              <td id="t-date"></td>
+              <td id="t-name"></td>
+              <td id="t-who"></td>
+              <td id="t-dist"></td>
+              <td><input type="checkbox" id="t-splits"></td>
+              <td><input type="checkbox" id="t-buma"></td>
+              <td><input type="checkbox" id="t-check"></td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </section>
   </main>
   <script src="home.js" defer></script>
   <script>
-    async function loadData() {
-      const rawEntries = await fetch('../data.json').then(r => r.json());
-      return rawEntries.map(([date,name,who,dist]) => ({ date,name,who,dist,done:false }));
-    }
-    document.addEventListener('DOMContentLoaded', async () => {
-      const data = await loadData();
-      renderCal(data);
-      nextTask(data);
-      document.getElementById('view-cal').onclick = () => showSection('calendar');
-      document.getElementById('view-tasks').onclick = () => showSection('tasks');
-      document.getElementById('view-artworks').onclick = () => window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank');
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCal(); nextTask();
+      document.getElementById('view-cal').onclick = () => { showSection('calendar'); };
+      document.getElementById('view-tasks').onclick = () => { showSection('tasks'); };
+      document.getElementById('view-artworks').onclick = () => { window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank'); };
       document.getElementById('user').textContent = localStorage.getItem('user');
     });
     function showSection(id) {
-      ['calendar','tasks'].forEach(s => document.getElementById(s).classList.toggle('hidden', s!==id));
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.toggle('active', btn.id==='view-'+id));
+      ['calendar','tasks'].forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.toggle('active', btn.id === 'view-' + id));
     }
   </script>
 </body>
