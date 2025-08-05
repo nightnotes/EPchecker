@@ -44,49 +44,15 @@ function renderCal(data) {
     if (dt >= today && (dt - today) / 86400000 < maxDays) {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-
-<td>${d.date}</td>
-<td>${d.name}</td>
-<td>${d.who}</td>
-<td>${d.dist}</td>
-<td><span class="status-dot ${d.done ? 'status-done' : 'status-pending'}" data-id="${d.id}" style="cursor:pointer;"></span></td>
-
+        <td>${d.date}</td>
+        <td>${d.name}</td>
+        <td>${d.who}</td>
+        <td>${d.dist}</td>
+        <td><span class="status-dot ${d.done ? 'status-done' : 'status-pending'}"></span></td>
       `;
       body.appendChild(tr);
     }
-  })
-// Interactieve status-dot met long‑press om terug te zetten
-body.querySelectorAll('.status-dot').forEach(dot => {
-  let timer;
-  const id = dot.dataset.id;
-  const task = data.find(t => t.id === id);
-  if (!task) return;
-
-  const startPress = () => {
-    if (!task.done) {
-      // direct naar groen
-      task.done = true;
-      persistState(task);
-      showCongrats();
-      setLastCompleted(task.id);
-      renderCal(data); nextTask(data);
-      return;
-    }
-    // long‑press van 3s om terug te zetten
-    timer = setTimeout(() => {
-      task.done = false;
-      persistState(task);
-      setLastCompleted('');
-      renderCal(data); nextTask(data);
-    }, 3000);
-  };
-  const cancelPress = () => clearTimeout(timer);
-
-  dot.addEventListener('mousedown', startPress);
-  dot.addEventListener('touchstart', startPress);
-  ['mouseup','mouseleave','touchend','touchcancel'].forEach(ev => dot.addEventListener(ev, cancelPress));
-});
-;
+  });
 }
 
 /* ---------- EP CHECKLIST ---------- */
@@ -149,6 +115,7 @@ updateDoneState();
 
 
 /* ---------- Pop‑up bij alle taken klaar ---------- */
+
 function showCongrats() {
   if (document.getElementById('kanertje-toast')) return; // al getoond
   const div = document.createElement('div');
@@ -158,12 +125,22 @@ function showCongrats() {
   div.style.bottom = '20px';
   div.style.right = '20px';
   div.style.padding = '12px 20px';
-  div.style.background = '#4ac06b';
+  div.style.background = 'rgba(74,192,107,0.9)';
   div.style.color = '#fff';
-  div.style.borderRadius = '6px';
+  div.style.borderRadius = '8px';
   div.style.fontWeight = 'bold';
   div.style.boxShadow = '0 4px 8px rgba(0,0,0,.3)';
   document.body.appendChild(div);
+
+  // confetti burst
+  if (typeof confetti === 'function') {
+    confetti({
+      particleCount: 120,
+      spread: 70,
+      origin: { y: 0.75 }
+    });
+  }
+
   setTimeout(()=> div.remove(), 3000);
 }
 
