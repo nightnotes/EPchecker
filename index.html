@@ -3,61 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Night Notes – Overzicht</title>
-
+  <title>Night Notes – Login</title>
   <link rel="stylesheet" href="./style.css">
-
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    nav ul { list-style: none; margin: 0; padding: 8px 16px; background:#222; display:flex; gap:1rem; }
-    nav a { color: #fff; text-decoration:none; font-weight:bold; }
-    section { padding:1rem 2rem; }
-    table { width:100%; border-collapse: collapse; }
-    th,td { padding:6px 8px; text-align:left; }
-    th { border-bottom:1px solid #ccc; }
-  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#releases">RELEASES</a></li>
-        <li><a href="#ep-checklist">EP CHECKLIST</a></li>
-        <li><a href="#artworks">ARTWORKS</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section id="releases">
-    <h2>Releases</h2>
-    <table id="releasesTable">
-      <thead>
-        <tr>
-          <th>Datum</th>
-          <th>Titel</th>
-          <th>Artiest</th>
-          <th>Distributie</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
-  <section id="ep-checklist">
-    <h2>EP Checklist</h2>
-    <p>Checklist‑sectie in opbouw…</p>
-  </section>
-
-  <section id="artworks">
-    <h2>Artworks</h2>
-    <p>Artworks‑sectie in opbouw…</p>
-  </section>
-
-  <!-- laadt de releases-data en het script -->
-  <script type="module">
-    import releaseSchedule from "./release_schedule_combined.js";
-    window.releaseSchedule = releaseSchedule;
-  </script>
-  <script type="module" src="./script.js"></script>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="logo"><img src="Logo nightnotes.png" alt="Night Notes logo"></div>
+      <h1>Inloggen</h1>
+      <form id="login-form">
+        <label for="username">Gebruiker</label>
+        <input id="username" type="text" required>
+        <label for="password">Wachtwoord</label>
+        <input id="password" type="password" required>
+        <button type="submit">Log in</button>
+        <div id="error" class="error"></div>
+      </form>
+    </div>
+  </div>
+  <script src="./script.js" defer></script>
 </body>
 </html>
