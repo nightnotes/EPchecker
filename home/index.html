@@ -11,7 +11,7 @@
     <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes logo" class="header-logo"></div>
     <nav>
       <button id="view-cal" class="active">EP Kalender</button>
-      <button id="view-tasks">Taken</button>
+      <button id="view-tasks">Mijn projecten</button>
       <button id="view-artworks">Artworks</button>
     </nav>
     <div class="welcome">Welkom <span id="user"></span></div>
@@ -41,23 +41,15 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       renderCal(); nextTask();
-      document.getElementById('view-cal').onclick = () => {
-        document.getElementById('calendar').classList.remove('hidden');
-        document.getElementById('tasks').classList.add('hidden');
-        document.getElementById('view-cal').classList.add('active');
-        document.getElementById('view-tasks').classList.remove('active');
-      };
-      document.getElementById('view-tasks').onclick = () => {
-        document.getElementById('tasks').classList.remove('hidden');
-        document.getElementById('calendar').classList.add('hidden');
-        document.getElementById('view-tasks').classList.add('active');
-        document.getElementById('view-cal').classList.remove('active');
-      };
-      document.getElementById('view-artworks').onclick = () => {
-        window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing', '_blank');
-      };
+      document.getElementById('view-cal').onclick = () => { showSection('calendar'); };
+      document.getElementById('view-tasks').onclick = () => { showSection('tasks'); };
+      document.getElementById('view-artworks').onclick = () => { window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank'); };
       document.getElementById('user').textContent = localStorage.getItem('user');
     });
+    function showSection(id) {
+      ['calendar','tasks'].forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.toggle('active', btn.id === 'view-' + id));
+    }
   </script>
 </body>
 </html>
