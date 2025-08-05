@@ -43,9 +43,10 @@ function nextTask() {
   document.getElementById('t-name').textContent = t.name;
   document.getElementById('t-who').textContent = t.who;
   document.getElementById('t-dist').textContent = t.dist;
-  const cb = document.getElementById('t-check');
-  cb.checked = false;
-  cb.onchange = () => {
+  document.getElementById('t-splits').checked = false;
+  document.getElementById('t-buma').checked = false;
+  document.getElementById('t-check').checked = false;
+  document.getElementById('t-check').onchange = () => {
     t.done = true;
     renderCal();
     nextTask();

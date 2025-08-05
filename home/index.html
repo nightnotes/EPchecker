@@ -28,14 +28,23 @@
       </div>
     </section>
     <section id="tasks" class="content-panel hidden">
-      <div id="task">
-        <span id="t-date"></span>
-        <span id="t-name"></span>
-        <span id="t-who"></span>
-        <span id="t-dist"></span>
-        <label><input type="checkbox" id="t-splits"> Splits</label>
-        <label><input type="checkbox" id="t-buma"> Buma/Stemra</label>
-        <input type="checkbox" id="t-check"> Klaar
+      <div class="table-container">
+        <table class="checklist-table">
+          <thead>
+            <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Splits</th><th>Buma/Stemra</th><th>Klaar</th></tr>
+          </thead>
+          <tbody>
+            <tr id="task-row">
+              <td id="t-date"></td>
+              <td id="t-name"></td>
+              <td id="t-who"></td>
+              <td id="t-dist"></td>
+              <td><input type="checkbox" id="t-splits"></td>
+              <td><input type="checkbox" id="t-buma"></td>
+              <td><input type="checkbox" id="t-check"></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </main>
