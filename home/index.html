@@ -8,31 +8,34 @@
 </head>
 <body>
   <header class="main-header">
-    <div class="logo-header">Night Notes</div>
-    <nav>
-      <button class="nav-btn active" id="releases-btn">EP RELEASES</button>
-      <button class="nav-btn" id="tasks-btn">Taken</button>
+    <div class="header-left">Night Notes</div>
+    <div class="header-center">Welkom <span id="user-name"></span></div>
+    <nav class="header-nav">
+      <button class="tab active" id="releases-btn">EP Kalender</button>
+      <button class="tab" id="tasks-btn">Taken</button>
     </nav>
   </header>
   <main class="overview">
-    <!-- Releases section -->
-    <section id="releases-section">
-      <h2>EP RELEASES Kalender</h2>
+    <section id="releases-section" class="content-panel">
       <table class="calendar-table">
-        <thead>
-          <tr><th>Artiest</th><th>Datum</th><th>Distributor</th><th>Playlist</th><th>Status</th></tr>
-        </thead>
+        <thead><tr><th>Datum</th><th>Artiest</th><th>Distributie</th><th>Wie?</th><th>Klaar?</th></tr></thead>
         <tbody id="calendar-body"></tbody>
       </table>
     </section>
-    <!-- Tasks section -->
-    <section id="tasks-section" class="hidden">
-      <h2 id="tasks-title">Je Taken</h2>
-      <div id="task-item" class="task-card">
-        <input type="checkbox" id="task-checkbox"><label for="task-checkbox" id="task-label"></label>
-      </div>
+    <section id="tasks-section" class="content-panel hidden">
+      <div id="task-card"><div class="task-info">
+        <span id="task-date"></span><span id="task-name"></span><span id="task-dist"></span><span id="task-owner"></span>
+      </div><div class="task-action">
+        <input type="checkbox" id="task-checkbox">
+      </div></div>
     </section>
   </main>
   <script src="../home.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = localStorage.getItem('username');
+      document.getElementById('user-name').textContent = user.charAt(0).toUpperCase() + user.slice(1);
+    });
+  </script>
 </body>
 </html>
