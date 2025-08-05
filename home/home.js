@@ -1,7 +1,4 @@
-// home/home.js  – nu mét:
-// * maxDays 45
-// * Undo-balk 'Laatste afgerond'
-// * Persistente status in localStorage per release
+// home/home.js  – Undo blijft staan tot volgende 'klaar' én over tab‑wissels
 
 /* ---------- Helpers voor opslag ---------- */
 function loadStates() {
@@ -10,6 +7,12 @@ function loadStates() {
 }
 function saveStates(states) {
   localStorage.setItem('releaseStates', JSON.stringify(states));
+}
+function setLastCompleted(id) {
+  localStorage.setItem('lastCompleted', id || '');
+}
+function getLastCompleted() {
+  return localStorage.getItem('lastCompleted') || '';
 }
 
 /* ---------- Data laden ---------- */
@@ -61,9 +64,10 @@ function nextTask(data) {
 
   if (!pending.length) {
     row.innerHTML = '<tr><td colspan="7">Geen openstaande taken 🎉</td></tr>';
+    renderLastCompleted(data);
     return;
   }
-  const t = pending[0];                 // eerstvolgende taak
+  const t = pending[0];
   const tr = document.createElement('tr');
   tr.innerHTML = `
     <td>${t.date}</td>
@@ -82,12 +86,16 @@ function nextTask(data) {
       t[key] = e.target.checked;
       persistState(t);
       if (key==='done' && t.done) {
-        showUndo(t);
+        setLastCompleted(t.id);
+        renderLastCompleted(data);
         renderCal(data);
-        nextTask(data);
+        nextTask(data);          // laad volgende taak
       }
     };
   });
+
+  // toon evt vorige lastCompleted
+  renderLastCompleted(data);
 }
 
 /* ---------- Opslaan ---------- */
@@ -101,9 +109,13 @@ function persistState(task) {
   saveStates(states);
 }
 
-/* ---------- Undo ---------- */
-function showUndo(task) {
-  const bar = document.getElementById('last-completed');
+/* ---------- Last‑completed balk ---------- */
+function renderLastCompleted(data) {
+  const bar   = document.getElementById('last-completed');
+  const id    = getLastCompleted();
+  const task  = data.find(d => d.id === id && d.done);
+  if (!task) { bar.classList.add('hidden'); return; }
+
   bar.innerHTML = `
     Laatste afgerond: ${task.date} – ${task.name}
     <button id="undo-btn">Herstel</button>
@@ -112,21 +124,17 @@ function showUndo(task) {
   document.getElementById('undo-btn').onclick = () => {
     task.done = false;
     persistState(task);
+    setLastCompleted('');
     bar.classList.add('hidden');
-    renderCal(window._allData || []);
-    nextTask(window._allData || []);
+    renderCal(data);
+    nextTask(data);
   };
 }
 
 /* ---------- Uitloggen ---------- */
 function initLogout() {
   const btn = document.getElementById('logout-btn');
-  if (btn) {
-    btn.onclick = () => {
-      localStorage.clear();
-      window.location.href = '../';
-    };
-  }
+  if (btn) btn.onclick = () => { localStorage.clear(); window.location.href = '../'; };
 }
 
 /* ---------- Init ---------- */
