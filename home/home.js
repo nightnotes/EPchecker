@@ -9,7 +9,7 @@ async function loadData() {
 // Render kalender met de komende 15 dagen
 function renderCal(data) {
   const today = new Date();
-  const maxDays = 15;
+  const maxDays = 45;
   const body = document.getElementById('cal-body');
   body.innerHTML = '';
 
