@@ -17,17 +17,17 @@
   </header>
   <main class="overview">
     <section id="releases-section" class="content-panel">
-      <table class="calendar-table">
-        <thead><tr><th>Datum</th><th>Artiest</th><th>Distributie</th><th>Playlist</th><th>Wie?</th><th>Status</th></tr></thead>
-        <tbody id="calendar-body"></tbody>
-      </table>
+      <div class="table-container">
+        <table class="calendar-table">
+          <thead><tr><th>Datum</th><th>Artiest</th><th>Distributie</th><th>Playlist</th><th>Wie?</th><th>Status</th></tr></thead>
+          <tbody id="calendar-body"></tbody>
+        </table>
+      </div>
     </section>
     <section id="tasks-section" class="content-panel hidden">
       <div id="task-card"><div class="task-info">
         <span id="task-date"></span><span id="task-name"></span><span id="task-dist"></span><span id="task-playlist"></span><span id="task-owner"></span>
-      </div><div class="task-action">
-        <input type="checkbox" id="task-checkbox">
-      </div></div>
+      </div><div class="task-action"><input type="checkbox" id="task-checkbox"></div></div>
     </section>
   </main>
   <script src="../home.js" defer></script>

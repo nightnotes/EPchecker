@@ -16,7 +16,8 @@ body { background-color: #1e1e2f; color: #fff; font-family: Arial, sans-serif; }
 .header-nav .tab { background: #3e3b78; border: none; padding: 10px 20px; margin-left: 10px; color: #ccc; cursor: pointer; border-radius: 6px 6px 0 0; }
 .header-nav .tab.active { background: #4a47a3; color: #fff; }
 .overview { padding: 20px; }
-.content-panel { background: #222; border-radius: 12px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); margin-top: 20px; max-width: 900px; margin-left: auto; margin-right: auto; }
+.content-panel { background: #222; border-radius: 12px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); margin-top: 20px; max-width: 900px; margin: 0 auto; }
+.table-container { max-width: 900px; margin: 0 auto; overflow-x: auto; }
 .calendar-table { width: 100%; border-collapse: collapse; }
 .calendar-table th, .calendar-table td { padding: 10px 8px; text-align: left; border-bottom: 1px solid #333; }
 .calendar-table thead th { background-color: #2e2d42; color: #fff; position: sticky; top: 0; }
