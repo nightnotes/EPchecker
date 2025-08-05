@@ -1,14 +1,29 @@
-/* links-bar styles */
-.links-bar {
-  margin: 8px 0 16px 0;
+/* -------- Strakkere link-kaarten -------- */
+.links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0 18px 0;
 }
-.links-bar a {
-  margin-right: 8px;
-  background: #444c9c;
-  padding: 6px 12px;
-  border-radius: 4px;
-  color: #fff;
+.link-card {
+  flex: 1 1 180px;
+  background: #2b2b3a;
+  border-radius: 8px;
+  padding: 16px 20px;
   text-decoration: none;
-  font-weight: bold;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,.35);
+  transition: transform .2s, box-shadow .2s;
 }
-.links-bar a:hover { background:#5a62c6; }
+.link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,.45);
+}
+.link-card h4 {
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+.link-card p {
+  font-size: 0.8rem;
+  color: #c4c4ff;
+}
