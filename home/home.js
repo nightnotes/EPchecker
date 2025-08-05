@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('view-cal').onclick     = () => showSection('calendar');
   document.getElementById('view-tasks').onclick   = () => showSection('tasks');
   document.getElementById('view-artworks').onclick = () => window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank');
+  document.getElementById('view-ads').onclick = () => window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?nav_entry_point=lep_237&nav_source=no_referrer&global_scope_id=1588689962026120&business_id=1588689962026120&act=925502492631790&redirect_session_id=e574ade7-c3be-47b5-b2ae-066c42524d8e#','_blank');
   document.getElementById('user').textContent     = localStorage.getItem('user');
 });
 
