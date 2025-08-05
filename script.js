@@ -6,6 +6,7 @@ form.addEventListener('submit', function(e) {
   const password = document.getElementById('password').value;
   const errorMessage = document.getElementById('error-message');
   if (users[username] && users[username] === password) {
+    localStorage.setItem('username', username);
     window.location.href = form.action;
   } else {
     errorMessage.textContent = 'Ongeldige gebruikersnaam of wachtwoord.';

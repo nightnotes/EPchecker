@@ -10,20 +10,28 @@
   <header class="main-header">
     <div class="logo-header">Night Notes</div>
     <nav>
-      <button class="nav-btn active">EP RELEASES</button>
-      <button class="nav-btn">My Tasks</button>
+      <button class="nav-btn active" id="releases-btn">EP RELEASES</button>
+      <button class="nav-btn" id="tasks-btn">Taken</button>
     </nav>
-    <div class="user-avatar">N</div>
   </header>
   <main class="overview">
-    <div class="overview-header">
-      <h2>EP RELEASES</h2>
-      <div class="actions">
-        <input type="text" placeholder="Zoek" id="search-input">
-        <button id="add-btn">+ Add</button>
+    <!-- Releases section -->
+    <section id="releases-section">
+      <h2>EP RELEASES Kalender</h2>
+      <table class="calendar-table">
+        <thead>
+          <tr><th>Artiest</th><th>Datum</th><th>Distributor</th><th>Playlist</th><th>Status</th></tr>
+        </thead>
+        <tbody id="calendar-body"></tbody>
+      </table>
+    </section>
+    <!-- Tasks section -->
+    <section id="tasks-section" class="hidden">
+      <h2 id="tasks-title">Je Taken</h2>
+      <div id="task-item" class="task-card">
+        <input type="checkbox" id="task-checkbox"><label for="task-checkbox" id="task-label"></label>
       </div>
-    </div>
-    <ul class="item-list" id="item-list"></ul>
+    </section>
   </main>
   <script src="../home.js" defer></script>
 </body>
