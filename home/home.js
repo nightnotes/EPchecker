@@ -64,6 +64,7 @@ function nextTask(data) {
 
   if (!pending.length) {
     row.innerHTML = '<tr><td colspan="7">Geen openstaande taken 🎉</td></tr>';
+    showCongrats();
     renderLastCompleted(data);
     return;
   }
@@ -96,6 +97,26 @@ function nextTask(data) {
 
   // toon evt vorige lastCompleted
   renderLastCompleted(data);
+}
+
+
+/* ---------- Pop‑up bij alle taken klaar ---------- */
+function showCongrats() {
+  if (document.getElementById('kanertje-toast')) return; // al getoond
+  const div = document.createElement('div');
+  div.id = 'kanertje-toast';
+  div.textContent = 'Hoppa!!! Weer een Kanertje verdiend!';
+  div.style.position = 'fixed';
+  div.style.bottom = '20px';
+  div.style.right = '20px';
+  div.style.padding = '12px 20px';
+  div.style.background = '#4ac06b';
+  div.style.color = '#fff';
+  div.style.borderRadius = '6px';
+  div.style.fontWeight = 'bold';
+  div.style.boxShadow = '0 4px 8px rgba(0,0,0,.3)';
+  document.body.appendChild(div);
+  setTimeout(()=> div.remove(), 3000);
 }
 
 /* ---------- Opslaan ---------- */
@@ -147,7 +168,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('view-cal').onclick     = () => showSection('calendar');
   document.getElementById('view-tasks').onclick   = () => showSection('tasks');
   document.getElementById('view-artworks').onclick = () => window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank');
-  document.getElementById('view-ads').onclick = () => window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?nav_entry_point=lep_237&nav_source=no_referrer&global_scope_id=1588689962026120&business_id=1588689962026120&act=925502492631790&redirect_session_id=e574ade7-c3be-47b5-b2ae-066c42524d8e#','_blank');
   document.getElementById('user').textContent     = localStorage.getItem('user');
 });
 
