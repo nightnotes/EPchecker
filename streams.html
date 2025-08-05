@@ -2,10 +2,11 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Night Notes</title>
+  <title>Streams Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style_navbtn.css">
-  <script src="script.js" defer></script>
+  <script src="streams.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -14,11 +15,17 @@
       <a href="ep_checklist.html" class="nav-btn">EP Checklist</a>
       <a href="artworks.html" class="nav-btn">Artworks</a>
       <a href="advertentiebeheer.html" class="nav-btn">Advertentiebeheer</a>
-      <a href="streams.html" class="nav-btn">Streams</a>
+      <a href="streams.html" class="nav-btn active">Streams</a>
     </nav>
   </header>
-  <main>
-    <!-- Bestaande home content -->
+  <main class="content">
+    <h1>Streams per Dag</h1>
+    <div class="month-controls">
+      <button id="prevMonth">← Vorige maand</button>
+      <span id="currentMonth"></span>
+      <button id="nextMonth">Volgende maand →</button>
+    </div>
+    <canvas id="streamsChart"></canvas>
   </main>
 </body>
 </html>
