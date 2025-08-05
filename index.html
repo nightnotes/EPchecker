@@ -3,55 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Night Notes - Overzicht</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Night Notes - Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="main-header">
-    <div class="header-left">Night Notes</div>
-    <div class="header-center">Welkom <span id="user-name"></span></div>
-    <nav class="header-nav">
-      <button class="tab active" id="releases-btn">EP Kalender</button>
-      <button class="tab" id="tasks-btn">Taken</button>
-    </nav>
-  </header>
-  <main class="overview">
-    <section id="releases-section" class="content-panel">
-      <div class="table-container">
-        <table class="calendar-table">
-          <thead>
-            <tr>
-              <th>Datum</th>
-              <th>Artiest</th>
-              <th>Distributie</th>
-              <th>Wie?</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="calendar-body"></tbody>
-        </table>
-      </div>
-    </section>
-    <section id="tasks-section" class="content-panel hidden">
-      <div id="task-card">
-        <div class="task-info">
-          <span id="task-date"></span>
-          <span id="task-name"></span>
-          <span id="task-dist"></span>
-          <span id="task-owner"></span>
-        </div>
-        <div class="task-action">
-          <input type="checkbox" id="task-checkbox">
-        </div>
-      </div>
-    </section>
-  </main>
-  <script src="../home.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const user = localStorage.getItem('username');
-      document.getElementById('user-name').textContent = user.charAt(0).toUpperCase() + user.slice(1);
-    });
-  </script>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="logo"><img src="Logo nightnotes.png" alt="Night Notes logo"></div>
+      <h1>Welkom CEO</h1>
+      <form id="login-form" action="home/">
+        <label for="username">Gebruikersnaam</label>
+        <input type="text" id="username" placeholder="Voer je gebruikersnaam in" required>
+        <label for="password">Wachtwoord</label>
+        <input type="password" id="password" placeholder="Voer je wachtwoord in" required>
+        <button type="submit">Log-in</button>
+      </form>
+      <p class="error" id="error"></p>
+    </div>
+  </div>
+  <script src="script.js" defer></script>
 </body>
 </html>

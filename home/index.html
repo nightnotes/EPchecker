@@ -7,35 +7,35 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <header class="main-header">
-    <div class="header-left">Night Notes</div>
-    <div class="header-center">Welkom <span id="user-name"></span></div>
-    <nav class="header-nav">
-      <button class="tab active" id="releases-btn">EP Kalender</button>
-      <button class="tab" id="tasks-btn">Taken</button>
+  <header class="header">
+    <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes logo" class="header-logo"></div>
+    <nav>
+      <button id="view-cal" class="active">EP Kalender</button>
+      <button id="view-tasks">Taken</button>
     </nav>
+    <div class="welcome">Welkom <span id="user"></span></div>
   </header>
-  <main class="overview">
-    <section id="releases-section" class="content-panel">
+  <main>
+    <section id="calendar" class="content-panel">
       <div class="table-container">
         <table class="calendar-table">
-          <thead><tr><th>Datum</th><th>Artiest</th><th>Distributie</th><th>Playlist</th><th>Wie?</th><th>Status</th></tr></thead>
-          <tbody id="calendar-body"></tbody>
+          <thead>
+            <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th></tr>
+          </thead>
+          <tbody id="cal-body"></tbody>
         </table>
       </div>
     </section>
-    <section id="tasks-section" class="content-panel hidden">
-      <div id="task-card"><div class="task-info">
-        <span id="task-date"></span><span id="task-name"></span><span id="task-dist"></span><span id="task-playlist"></span><span id="task-owner"></span>
-      </div><div class="task-action"><input type="checkbox" id="task-checkbox"></div></div>
+    <section id="tasks" class="content-panel hidden">
+      <div id="task">
+        <span id="t-date"></span>
+        <span id="t-name"></span>
+        <span id="t-who"></span>
+        <span id="t-dist"></span>
+        <input type="checkbox" id="t-check">
+      </div>
     </section>
   </main>
-  <script src="../home.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const user = localStorage.getItem('username');
-      document.getElementById('user-name').textContent = user.charAt(0).toUpperCase() + user.slice(1);
-    });
-  </script>
+  <script src="home.js" defer></script>
 </body>
 </html>

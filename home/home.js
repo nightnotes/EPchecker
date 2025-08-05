@@ -1,56 +1,52 @@
-// home/home.js
-
-const epData = [
-  { date: '15-08-2025', name: 'Luna Nights',     assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '16-08-2025', name: 'Ava Willow',      assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '17-08-2025', name: 'Sleepy Delrow',   assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '18-08-2025', name: 'Motionless',      assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '19-08-2025', name: 'Loomy',           assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '20-08-2025', name: 'Lila Serene',     assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '21-08-2025', name: 'Soft Dawn',       assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '22-08-2025', name: 'Nunery Dream',    assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '23-08-2025', name: 'Celestine Viora', assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '24-08-2025', name: 'Ludo Legato',     assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '25-08-2025', name: 'Muted Mind',      assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '26-08-2025', name: 'Swooshy',         assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '27-08-2025', name: 'Evelyn Winter',   assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '28-08-2025', name: 'Krople',          assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '29-08-2025', name: 'Katty',           assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '30-08-2025', name: 'Sophia Vale',     assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '31-08-2025', name: 'Domindo Nuni',    assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '01-09-2025', name: 'Motionless',      assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '02-09-2025', name: 'Loomy',           assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '03-09-2025', name: 'Eleanor Moon',    assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '04-09-2025', name: 'Luna Nights',     assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '05-09-2025', name: 'Ava Willow',      assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '06-09-2025', name: 'Sleepy Delrow',   assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '07-09-2025', name: 'Lila Serene',     assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '08-09-2025', name: 'Muted Mind',      assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '09-09-2025', name: 'Swooshy',         assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '10-09-2025', name: 'Soft Dawn',       assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '11-09-2025', name: 'Nunery Dream',    assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '12-09-2025', name: 'Celestine Viora', assignedTo: 'Nuno',    distributor: 'Distrokid', completed: false },
-  { date: '13-09-2025', name: 'Ludo Legato',     assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
-  { date: '14-09-2025', name: 'Evelyn Winter',   assignedTo: 'Martijn', distributor: 'Distrokid', completed: false },
+const data = [
+  { date:'15-08-2025', name:'Luna Nights',  who:'Martijn', dist:'Distrokid', done:false },
+  { date:'16-08-2025', name:'Ava Willow',   who:'Martijn', dist:'Distrokid', done:false },
+  { date:'17-08-2025', name:'Sleepy Delrow',who:'Nuno',    dist:'Distrokid', done:false },
+  { date:'18-08-2025', name:'Motionless',   who:'Martijn', dist:'Distrokid', done:false },
+  { date:'19-08-2025', name:'Loomy',        who:'Nuno',    dist:'Distrokid', done:false },
+  { date:'20-08-2025', name:'Lila Serene',  who:'Nuno',    dist:'Distrokid', done:false },
+  { date:'21-08-2025', name:'Soft Dawn',    who:'Nuno',    dist:'Distrokid', done:false },
+  { date:'22-08-2025', name:'Nunery Dream', who:'Nuno',    dist:'Distrokid', done:false },
+  { date:'23-08-2025', name:'Celestine Viora',who:'Nuno', dist:'Distrokid', done:false },
+  { date:'24-08-2025', name:'Ludo Legato',  who:'Martijn', dist:'Distrokid', done:false }
 ];
 
-function renderCalendar() {
-  const tbody = document.getElementById('calendar-body');
-  tbody.innerHTML = '';
-  epData.forEach(item => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${item.date}</td>
-      <td>${item.name}</td>
-      <td>${item.assignedTo}</td>
-      <td>${item.distributor}</td>
-      <td><input type="checkbox" class="calendar-checkbox" data-name="${item.name}" ${item.completed ? 'checked' : ''}></td>
-    `;
-    tbody.appendChild(tr);
+function renderCal() {
+  const body= document.getElementById('cal-body'); body.innerHTML='';
+  data.forEach(d=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=\`<td>\${d.date}</td><td>\${d.name}</td><td>\${d.who}</td><td>\${d.dist}</td><td><input type='checkbox' \${d.done?'checked':''}></td>\`;
+    body.appendChild(tr);
   });
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  renderCalendar();
-  showNextTask();
+function nextTask() {
+  const user = localStorage.getItem('user');
+  const pending = data.filter(d=>d.who===user && !d.done);
+  if (pending.length) {
+    const t = pending[0];
+    document.getElementById('t-date').textContent=t.date;
+    document.getElementById('t-name').textContent=t.name;
+    document.getElementById('t-who').textContent=t.who;
+    document.getElementById('t-dist').textContent=t.dist;
+    const cb=document.getElementById('t-check'); cb.checked=false;
+    cb.onchange=()=>{t.done=true; nextTask();};
+  }
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('user').textContent=localStorage.getItem('user');
+  renderCal(); nextTask();
+  document.getElementById('view-cal').onclick=()=>{
+    document.getElementById('calendar').classList.remove('hidden');
+    document.getElementById('tasks').classList.add('hidden');
+    document.getElementById('view-cal').classList.add('active');
+    document.getElementById('view-tasks').classList.remove('active');
+  };
+  document.getElementById('view-tasks').onclick=()=>{
+    document.getElementById('tasks').classList.remove('hidden');
+    document.getElementById('calendar').classList.add('hidden');
+    document.getElementById('view-tasks').classList.add('active');
+    document.getElementById('view-cal').classList.remove('active');
+  };
 });
