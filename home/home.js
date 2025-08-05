@@ -182,6 +182,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('view-cal').onclick     = () => showSection('calendar');
   document.getElementById('view-tasks').onclick   = () => showSection('tasks');
   document.getElementById('view-artworks').onclick = () => window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank');
+
+// Quick-tab external links
+document.getElementById('link-distrokid').onclick = () => window.open('https://distrokid.com/new/','_blank');
+document.getElementById('link-amuse').onclick     = () => window.open('https://artist.amuse.io/studio','_blank');
+document.getElementById('link-buma').onclick      = () => window.open('https://mijn.bumastemra.nl/','_blank');
+  document.getElementById('view-ads').onclick = () => window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?nav_entry_point=lep_237&nav_source=no_referrer&global_scope_id=1588689962026120&business_id=1588689962026120&act=925502492631790','_blank');
+
   document.getElementById('user').textContent     = localStorage.getItem('user');
 });
 
