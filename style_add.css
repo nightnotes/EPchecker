@@ -1,5 +1,8 @@
+/* ------- Extra styles: undo-balk & logout-knop -------- */
+.last-completed { margin-top: 8px; font-size: 0.9rem; }
+.last-completed.hidden { display: none; }
+.last-completed button { margin-left: 8px; padding: 2px 6px; font-size: 0.8rem; }
 
-/* logout button */
 .logout-btn {
   margin-left: 12px;
   background: #444c9c;
@@ -9,15 +12,4 @@
   border-radius: 4px;
   cursor: pointer;
 }
-.logout-btn:hover { background:#5a62c6; }
-
-/* kleine undo-balk */
-.last-completed {
-  margin-top: 8px;
-  font-size: 0.9rem;
-}
-.last-completed button {
-  margin-left: 8px;
-  padding: 2px 6px;
-  font-size: 0.8rem;
-}
+.logout-btn:hover { background: #5a62c6; }
