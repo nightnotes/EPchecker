@@ -6,22 +6,28 @@ async function loadData() {
   return rawEntries.map(([date, name, who, dist]) => ({ date, name, who, dist, done: false }));
 }
 
-// Render alle kalender entries
+// Render kalender met de komende 15 dagen
 function renderCal(data) {
+  const today = new Date();
+  const maxDays = 15;
   const body = document.getElementById('cal-body');
   body.innerHTML = '';
 
   data.forEach(d => {
-    const tr = document.createElement('tr');
-    const statusClass = d.done ? 'status-done' : 'status-pending';
-    tr.innerHTML = `
-      <td>${d.date}</td>
-      <td>${d.name}</td>
-      <td>${d.who}</td>
-      <td>${d.dist}</td>
-      <td><span class="status-dot ${statusClass}"></span></td>
-    `;
-    body.appendChild(tr);
+    const [dd, mm, yyyy] = d.date.split('-');
+    const dt = new Date(`${yyyy}-${mm}-${dd}`);
+    if (dt >= today && (dt - today) / (1000 * 60 * 60 * 24) < maxDays) {
+      const tr = document.createElement('tr');
+      const statusClass = d.done ? 'status-done' : 'status-pending';
+      tr.innerHTML = `
+        <td>${d.date}</td>
+        <td>${d.name}</td>
+        <td>${d.who}</td>
+        <td>${d.dist}</td>
+        <td><span class="status-dot ${statusClass}"></span></td>
+      `;
+      body.appendChild(tr);
+    }
   });
 }
 
