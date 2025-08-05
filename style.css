@@ -13,27 +13,21 @@ body { background: #1e1e2f; color: #fff; font-family: Arial, sans-serif; }
 header.header {
   display: flex;
   align-items: center;
+  justify-content: center; /* center all items */
   background-color: #2b2b3a;
   padding: 10px 20px;
   position: relative;
 }
 header.header .logo {
-  font-size: 1.4rem;
+  margin-right: auto;
 }
-header-logo {
-  height: 40px;
-}
-header.header .welcome {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.6rem;
-  color: #fff;
+header.header .logo img.header-logo {
+  width: 40px; /* smaller logo */
+  height: auto;
 }
 header.header nav {
   display: flex;
   gap: 10px;
-  margin: 0 auto;
 }
 header.header nav button {
   background: #4a47a3;
@@ -46,6 +40,11 @@ header.header nav button {
 }
 header.header nav button.active {
   background: #6a67c5;
+}
+header.header .welcome {
+  margin-left: auto;
+  font-size: 1.6rem;
+  color: #fff;
 }
 
 main {
@@ -70,7 +69,7 @@ main {
 .calendar-table td {
   padding: 10px;
   border-bottom: 1px solid #333;
-  text-align: left;
+  text-align: center; /* center cells */
   color: #fff;
 }
 .calendar-table thead th {
@@ -91,6 +90,7 @@ main {
   font-size: 1rem;
 }
 #t-check {
+  margin-left: auto;
   width: 20px;
   height: 20px;
   accent-color: #4a47a3;

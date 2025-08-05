@@ -37,5 +37,10 @@
     </section>
   </main>
   <script src="home.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('user').textContent = localStorage.getItem('user');
+    });
+  </script>
 </body>
 </html>

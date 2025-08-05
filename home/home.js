@@ -15,7 +15,7 @@ function renderCal() {
   const body= document.getElementById('cal-body'); body.innerHTML='';
   data.forEach(d=>{
     const tr=document.createElement('tr');
-    tr.innerHTML=\`<td>\${d.date}</td><td>\${d.name}</td><td>\${d.who}</td><td>\${d.dist}</td><td><input type='checkbox' \${d.done?'checked':''}></td>\`;
+    tr.innerHTML=`<td>${d.date}</td><td>${d.name}</td><td>${d.who}</td><td>${d.dist}</td><td><input type='checkbox' ${d.done?'checked':''}></td>`;
     body.appendChild(tr);
   });
 }
@@ -34,8 +34,7 @@ function nextTask() {
   }
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('user').textContent=localStorage.getItem('user');
+document.addEventListener('DOMContentLoaded', ()=>{
   renderCal(); nextTask();
   document.getElementById('view-cal').onclick=()=>{
     document.getElementById('calendar').classList.remove('hidden');
