@@ -47,3 +47,23 @@ main { padding: 20px; }
 .status-pending { background: red; }
 .status-done { background: green; }
 .hidden { display: none; }
+
+
+.logout-btn {
+  background: #4a4abe;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.last-completed {
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.last-completed.hidden {
+  display: none;
+}
