@@ -65,9 +65,9 @@ cron.schedule('0 */6 * * *', async () => {
         id,
         streams
       );
-      console.log(\`Saved streams for \${id}: \${streams}\`);
+      console.log(`Saved streams for ${id}: ${streams}`);
     } catch (err) {
-      console.error(\`Error fetching streams for \${id}:\`, err.message);
+      console.error(`Error fetching streams for ${id}:`, err.message);
     }
   }
 });
@@ -84,4 +84,4 @@ app.get('/api/streams/:artistId', async (req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(\`Server draait op http://localhost:\${PORT}\`));
+app.listen(PORT, () => console.log(`Server draait op http://localhost:${PORT}`));
