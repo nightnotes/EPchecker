@@ -10,7 +10,7 @@
   <header class="header">
     <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes logo" class="header-logo"></div>
     <nav>
-      <button id="view-cal" class="active nav-btn">RELEASES</button>
+      <button id="view-cal" class="nav-btn active">RELEASES</button>
       <button id="view-tasks" class="nav-btn">EP CHECKLIST</button>
       <button id="view-artworks" class="nav-btn">ARTWORKS</button>
       <button id="view-ads" class="nav-btn">ADVERTENTIEBEHEER</button>
@@ -27,9 +27,7 @@
       <div class="table-container">
         <table class="calendar-table">
           <thead>
-            <tr>
-              <th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th>
-            </tr>
+            <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th></tr>
           </thead>
           <tbody id="cal-body"></tbody>
         </table>
@@ -38,29 +36,24 @@
 
     <!-- EP CHECKLIST -->
     <section id="tasks" class="content-panel hidden">
+
       <div class="quick-tabs">
-        <a href="https://distrokid.com/new/"   target="_blank" class="nav-btn">DISTROKID</a>
-        <a href="https://artist.amuse.io/studio" target="_blank" class="nav-btn">AMUSE</a>
-        <a href="https://mijn.bumastemra.nl/"  target="_blank" class="nav-btn">BUMA/STEMRA</a>
+        <a href="https://distrokid.com/new/" target="_blank" class="nav-btn quick-tab">DISTROKID</a>
+        <a href="https://artist.amuse.io/studio" target="_blank" class="nav-btn quick-tab">AMUSE</a>
+        <a href="https://mijn.bumastemra.nl/" target="_blank" class="nav-btn quick-tab">BUMA/STEMRA</a>
       </div>
 
       <div class="table-container">
         <table class="checklist-table">
           <thead>
-            <tr>
-              <th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th>
-              <th>Splits</th><th>Buma/Stemra</th><th>Klaar</th>
-            </tr>
+            <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Splits</th><th>Buma/Stemra</th><th>Klaar</th></tr>
           </thead>
           <tbody id="task-row"></tbody>
         </table>
-
-        <!-- UNDO‑balk -->
         <div id="last-completed" class="last-completed hidden"></div>
       </div>
     </section>
   </main>
-
   <script src="home.js" defer></script>
 </body>
 </html>
