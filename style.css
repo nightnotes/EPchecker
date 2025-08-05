@@ -10,17 +10,16 @@ body { background-color: #1e1e2f; color: #fff; font-family: Arial, sans-serif; }
 #login-button { width: 100%; padding: 12px; background-color: #302d5f; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; color: #fff; }
 #login-button:hover { background-color: #3e3b78; }
 .error-message { color: #f66; margin-top: 10px; font-size: 0.9rem; min-height: 1.2em; }
-/* Header overview */
 .main-header { display: flex; align-items: center; justify-content: space-between; background-color: #2b2b3a; padding: 10px 20px; }
 .header-left { font-size: 1.4rem; font-weight: bold; }
 .header-center { position: absolute; left: 50%; transform: translateX(-50%); font-size: 1.6rem; }
 .header-nav .tab { background: #3e3b78; border: none; padding: 10px 20px; margin-left: 10px; color: #ccc; cursor: pointer; border-radius: 6px 6px 0 0; }
 .header-nav .tab.active { background: #4a47a3; color: #fff; }
 .overview { padding: 20px; }
-.content-panel { background: #222; border-radius: 12px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); margin-top: 20px; }
+.content-panel { background: #222; border-radius: 12px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); margin-top: 20px; max-width: 900px; margin-left: auto; margin-right: auto; }
 .calendar-table { width: 100%; border-collapse: collapse; }
-.calendar-table th, .calendar-table td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
-.calendar-table th { color: #ddd; font-weight: 600; }
+.calendar-table th, .calendar-table td { padding: 10px 8px; text-align: left; border-bottom: 1px solid #333; }
+.calendar-table thead th { background-color: #2e2d42; color: #fff; position: sticky; top: 0; }
 #tasks-section #task-card { display: flex; justify-content: space-between; align-items: center; background: #2e2d42; padding: 16px; border-radius: 8px; }
 .task-info span { margin-right: 20px; color: #fff; font-size: 1rem; }
 .task-action input { width: 24px; height: 24px; accent-color: #4a47a3; }
