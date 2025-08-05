@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Night Notes - Overzicht</title>
+  <title>Night Notes – Overzicht</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -14,50 +14,45 @@
       <button id="view-tasks">EP CHECKLIST</button>
       <button id="view-artworks">ARTWORKS</button>
     </nav>
-    <div class="welcome">Welkom <span id="user"></span> <button id="logout" class="logout-btn">Log&nbsp;out</button></div>
+    <div class="welcome">
+      Welkom <span id="user"></span>
+      <button id="logout-btn" class="logout-btn">Log out</button>
+    </div>
   </header>
+
   <main>
+    <!-- RELEASES -->
     <section id="calendar" class="content-panel">
       <div class="table-container">
         <table class="calendar-table">
           <thead>
-            <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th></tr>
+            <tr>
+              <th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th>
+            </tr>
           </thead>
           <tbody id="cal-body"></tbody>
         </table>
-<div id="last-completed" class="last-completed hidden"></div>
       </div>
     </section>
+
+    <!-- EP CHECKLIST -->
     <section id="tasks" class="content-panel hidden">
       <div class="table-container">
         <table class="checklist-table">
           <thead>
-            <tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Splits</th><th>Buma/Stemra</th><th>Klaar</th></tr>
+            <tr>
+              <th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th>
+              <th>Splits</th><th>Buma/Stemra</th><th>Klaar</th>
+            </tr>
           </thead>
           <tbody id="task-row"></tbody>
         </table>
+        <div id="last-completed" class="last-completed hidden"></div>
       </div>
     </section>
   </main>
+
+  <!-- hoofdscript -->
   <script src="home.js" defer></script>
-  <script>
-    async function loadData() {
-      const rawEntries = await fetch('../data.json').then(r => r.json());
-      return rawEntries.map(([date,name,who,dist]) => ({ date,name,who,dist,done:false }));
-    }
-    document.addEventListener('DOMContentLoaded', async () => {
-      const data = await loadData();
-      renderCal(data);
-      nextTask(data);
-      document.getElementById('view-cal').onclick = () => showSection('calendar');
-      document.getElementById('view-tasks').onclick = () => showSection('tasks');
-      document.getElementById('view-artworks').onclick = () => window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank');
-      document.getElementById('user').textContent = localStorage.getItem('user');
-    });
-    function showSection(id) {
-      ['calendar','tasks'].forEach(s => document.getElementById(s).classList.toggle('hidden', s!==id));
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.toggle('active', btn.id==='view-'+id));
-    }
-  </script>
 </body>
 </html>
