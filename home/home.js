@@ -1,3 +1,6 @@
+// home/home.js
+
+// Laad data via data.json (fetch)
 async function loadData() {
   const rawEntries = await fetch('../data.json').then(r => r.json());
   return rawEntries.map(([date, name, who, dist]) => ({ date, name, who, dist, done: false }));
@@ -63,12 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('view-cal').onclick = () => showSection('calendar');
   document.getElementById('view-tasks').onclick = () => showSection('tasks');
-  document.getElementById('view-artworks').onclick = () => {
-    window.open(
-      'https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing',
-      '_blank'
-    );
-  };
+  document.getElementById('view-artworks').onclick = () => window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g?usp=sharing','_blank');
   document.getElementById('user').textContent = localStorage.getItem('user');
 });
 
