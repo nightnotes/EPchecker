@@ -44,12 +44,14 @@ function renderCal(data) {
     if (dt >= today && (dt - today) / 86400000 < maxDays) {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${d.date}</td>
-        <td>${d.name}</td>
-        <td>${d.who}</td>
-        <td>${d.dist}</td>
-        <td><span class="status-dot ${d.done ? 'status-done' : 'status-pending'}"></span></td>
-      `;
+<td>${t.date}</td>
+<td>${t.name}</td>
+<td>${t.who}</td>
+<td>${t.dist}</td>
+<td><input type="checkbox" id="c-splits" ${t.splits?'checked':''}></td>
+<td><input type="checkbox" id="c-buma"   ${t.buma?'checked':''}></td>
+<td><input type="checkbox" id="c-done"   ${t.done?'checked disabled':'disabled'}></td>
+`;
       body.appendChild(tr);
     }
   });
@@ -80,10 +82,25 @@ function nextTask(data) {
   `;
   row.appendChild(tr);
 
+function updateDoneState() {
+  document.getElementById('c-done').disabled = !(t.splits && t.buma);
+  if (!t.splits || !t.buma) {
+    document.getElementById('c-done').checked = false;
+    t.done = false;
+    persistState(t);
+    setLastCompleted('');
+    renderLastCompleted(data);
+    renderCal(data);
+  }
+}
+updateDoneState();
+
+
   // listeners
   ['splits','buma','done'].forEach(key => {
     document.getElementById('c-'+key).onchange = (e) => {
       t[key] = e.target.checked;
+      if (key!=='done') updateDoneState();
       persistState(t);
       if (key==='done' && t.done) {
         showCongrats();
