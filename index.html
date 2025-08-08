@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body{display:flex;justify-content:center;align-items:center;height:100vh;background:#1b1b29;font-family:sans-serif;}
-    .card{background:#2a2a3b;padding:40px 50px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.4);text-align:center;width:300px;}
-    .card img{width:150px;margin:0 auto 20px;display:block;}
+    .card{background:#2a2a3b;padding:40px 50px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.4);text-align:center;width:320px;}
+    .card img{width:200px;margin:0 auto 20px;display:block;}
     select,input,button{width:100%;margin-top:8px;padding:8px 12px;border:none;border-radius:6px;}
     button{background:#444c9c;color:#fff;font-weight:600;cursor:pointer;}
     button:hover{background:#5a62c6;}
@@ -29,8 +29,8 @@
     document.getElementById('login-btn').onclick = () => {
       const user = document.getElementById('user').value;
       const pwd  = document.getElementById('pwd').value;
-      if (!user)          { alert('Kies een account'); return; }
-      if (pwd !== '123!') { alert('Onjuist wachtwoord'); return; }
+      if (!user){ alert('Kies een account'); return; }
+      if (pwd !== '123!'){ alert('Onjuist wachtwoord'); return; }
       localStorage.setItem('user', user);
       location.href = 'home/';
     };
