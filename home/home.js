@@ -1,6 +1,10 @@
 
-// ==== CONFIG ====
 const MAX_DAYS = 45;
+
+// Auth guard: if no user, go back to login (no auto-forward from login => no loop)
+document.addEventListener('DOMContentLoaded',()=>{
+  if(!localStorage.getItem('user')) location.href='../';
+});
 
 function loadStates(){try{return JSON.parse(localStorage.getItem('releaseStates')||'{}')}catch(e){return {}}}
 function saveStates(s){localStorage.setItem('releaseStates',JSON.stringify(s))}
@@ -8,9 +12,8 @@ function setLastCompleted(id){localStorage.setItem('lastCompleted',id||'')}
 function getLastCompleted(){return localStorage.getItem('lastCompleted')||''}
 
 async function loadData(){
-  const url = '../data.json';
   try{
-    const raw = await fetch(url).then(r=>r.json());
+    const raw = await fetch('../data.json').then(r=>r.json());
     const st = loadStates();
     return raw.map(([date,name,who,dist])=>{
       const id=`${date}_${name}`;
@@ -18,7 +21,7 @@ async function loadData(){
       return {id,date,name,who,dist,splits:!!s.splits,buma:!!s.buma,done:!!s.done};
     });
   }catch(e){
-    console.warn('Kan data.json niet laden op', url, e);
+    console.warn('data.json niet gevonden of ongeldig', e);
     return [];
   }
 }
@@ -35,7 +38,7 @@ function renderCal(data){
       body.appendChild(tr);
     }
   });
-  if(!body.children.length){body.innerHTML='<tr><td colspan="5">Geen releases in de komende periode.</td></tr>'}
+  if(!body.children.length){body.innerHTML='<tr><td colspan="5">Geen releases in de komende periode.</td></tr>';}
 
   body.querySelectorAll('.status-dot').forEach(dot=>{
     let timer; const id=dot.dataset.id; const t=window._data.find(x=>x.id===id);
@@ -80,7 +83,7 @@ function nextTask(data){
 
 function persistState(t,showConfetti){
   const st=loadStates(); st[t.id]={splits:t.splits,buma:t.buma,done:t.done}; saveStates(st);
-  showConfetti? (showCongrats(), setLastCompleted(t.id)) : setLastCompleted('');
+  if(showConfetti && typeof confetti==='function'){confetti({particleCount:120,spread:70,origin:{y:0.75}}); setLastCompleted(t.id);} else {setLastCompleted('');}
   renderCal(window._data); nextTask(window._data);
 }
 
@@ -93,12 +96,8 @@ function renderLast(data){
   const btn=document.createElement('button'); btn.textContent='Herstel'; btn.className='nav-btn'; btn.onclick=()=>{t.done=false; persistState(t,false);}; bar.appendChild(btn);
 }
 
-function showCongrats(){
-  if(typeof confetti==='function'){confetti({particleCount:120,spread:70,origin:{y:0.75}});}
-}
-
 function showSection(id){
-  ['calendar','tasks','streams'].forEach(s=>document.getElementById(s).classList.toggle('hidden',s!==id));
+  ['calendar','tasks'].forEach(s=>document.getElementById(s).classList.toggle('hidden',s!==id));
   document.querySelectorAll('nav .nav-btn').forEach(b=>b.classList.toggle('active',b.id==='view-'+id));
 }
 
@@ -108,13 +107,8 @@ document.addEventListener('DOMContentLoaded',async()=>{
 
   document.getElementById('view-cal').onclick   =()=>showSection('calendar');
   document.getElementById('view-tasks').onclick =()=>showSection('tasks');
-  document.getElementById('view-streams').onclick=()=>showSection('streams');
   document.getElementById('view-artworks').onclick=()=>window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g','_blank');
-  document.getElementById('view-ads').onclick   =()=>window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1588689962026120','_blank');
-
-  document.getElementById('link-distrokid').onclick=()=>window.open('https://distrokid.com/new/','_blank');
-  document.getElementById('link-amuse').onclick    =()=>window.open('https://artist.amuse.io/studio','_blank');
-  document.getElementById('link-buma').onclick     =()=>window.open('https://mijn.bumastemra.nl/','_blank');
+  document.getElementById('view-ads').onclick  =()=>window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1588689962026120','_blank');
 
   window._data = await loadData();
   renderCal(window._data); nextTask(window._data);

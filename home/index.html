@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="nl"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Night Notes</title>
-<link rel="stylesheet" href="../style.css">
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Notes</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <div id="app"></div>
+  <header class="header">
+    <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes"></div>
+    <nav>
+      <button id="view-cal" class="nav-btn active">RELEASES</button>
+      <button id="view-tasks" class="nav-btn">EP CHECKLIST</button>
+      <button id="view-artworks" class="nav-btn">ARTWORKS</button>
+      <button id="view-ads" class="nav-btn">ADVERTENTIEBEHEER</button>
+    </nav>
+    <div class="welcome">Welkom <span id="user"></span> <button id="logout-btn" class="logout-btn">Log out</button></div>
+  </header>
+
+  <div class="content">
+    <section id="calendar">
+      <div class="card">
+        <table class="table">
+          <thead><tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th></tr></thead>
+          <tbody id="cal-body"><tr><td colspan="5">Laden…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tasks" class="hidden">
+      <div class="quick-tabs">
+        <button type="button" id="link-distrokid" class="nav-btn">DISTROKID</button>
+        <button type="button" id="link-amuse" class="nav-btn">AMUSE</button>
+        <button type="button" id="link-buma" class="nav-btn">BUMA/STEMRA</button>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead><tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Splits</th><th>Buma/Stemra</th><th>Klaar</th></tr></thead>
+          <tbody id="task-row"><tr><td colspan="7">Laden…</td></tr></tbody>
+        </table>
+        <div id="last-completed" class="hidden" style="padding:12px 14px;"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="home.js" defer></script>
-</body></html>
+</body>
+</html>

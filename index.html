@@ -16,15 +16,21 @@
 <body>
   <div class="card">
     <img src="Logo nightnotes.png" alt="Night Notes logo">
-    <select id="user"><option value="" disabled selected>Kies account</option><option value="Nuno">Nuno</option><option value="Martijn">Martijn</option></select>
+    <select id="user">
+      <option value="" disabled selected>Kies account</option>
+      <option value="Nuno">Nuno</option>
+      <option value="Martijn">Martijn</option>
+    </select>
     <input id="pwd" type="password" placeholder="Wachtwoord">
     <button id="login-btn" class="btn">Log in</button>
   </div>
   <script>
     document.getElementById('login-btn').onclick=()=>{
       const u=document.getElementById('user').value, p=document.getElementById('pwd').value;
-      if(!u){alert('Kies een account');return;} if(p!=='123!'){alert('Onjuist wachtwoord');return;}
-      localStorage.setItem('user',u); location.href='home/';
+      if(!u){alert('Kies een account');return;}
+      if(p!=='123!'){alert('Onjuist wachtwoord');return;}
+      localStorage.setItem('user',u);
+      location.href='home/';
     };
   </script>
 </body>
