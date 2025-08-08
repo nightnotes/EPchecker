@@ -5,72 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Night Notes</title>
   <link rel="stylesheet" href="../style.css">
-  <style>
-    .header{display:flex;justify-content:space-between;align-items:center;padding:12px;}
-    .header-logo{height:32px}
-    .nav-btn{display:inline-block;background:#444c9c;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-weight:600;cursor:pointer;text-decoration:none;font-size:.9rem;margin-right:8px}
-    .nav-btn.active,.nav-btn:hover{background:#5a62c6}
-    .logout-btn{margin-left:10px;background:#444c9c;border:none;color:#fff;padding:6px 10px;border-radius:6px;cursor:pointer;}
-    .content-panel{padding:14px}
-    .hidden{display:none}
-    .glass-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(8px) saturate(140%);-webkit-backdrop-filter:blur(8px) saturate(140%);border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.25);}
-    .table-container{padding:12px;margin:12px}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
-    .quick-tabs{display:flex;justify-content:center;gap:12px;margin:10px 0 18px}
-    .quick-tabs .nav-btn{padding:6px 16px}
-    .status-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#f66;cursor:pointer}
-    .status-done{background:#4ac06b}
-    .last-completed{margin:0 12px;font-size:.9rem}
-    .last-completed.hidden{display:none}
-  </style>
 </head>
 <body>
   <header class="header">
-    <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes" class="header-logo"></div>
+    <div class="logo"><img src="../Logo nightnotes.png" alt="Night Notes"></div>
     <nav>
-      <button id="view-cal" class="nav-btn active">Releases</button>
-      <button id="view-tasks" class="nav-btn">EP Checklist</button>
-      <button id="view-artworks" class="nav-btn">Artworks</button>
-      <button id="view-ads" class="nav-btn">Advertentiebeheer</button>
-      <button id="view-streams" class="nav-btn">Streams</button>
+      <button id="view-cal" class="nav-btn active">RELEASES</button>
+      <button id="view-tasks" class="nav-btn">EP CHECKLIST</button>
+      <button id="view-artworks" class="nav-btn">ARTWORKS</button>
+      <button id="view-ads" class="nav-btn">ADVERTENTIEBEHEER</button>
+      <button id="view-streams" class="nav-btn">STREAMS</button>
     </nav>
-    <div>Welkom <span id="user"></span> <button id="logout-btn" class="logout-btn">Log out</button></div>
+    <div class="welcome">Welkom <span id="user"></span> <button id="logout-btn" class="logout-btn">Log out</button></div>
   </header>
 
-  <!-- RELEASES -->
-  <section id="calendar" class="content-panel">
-    <div class="table-container glass-card">
-      <table class="calendar-table">
-        <thead><tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th></tr></thead>
-        <tbody id="cal-body"><tr><td colspan="5">Laden…</td></tr></tbody>
-      </table>
-    </div>
-  </section>
+  <div class="content">
+    <section id="calendar">
+      <div class="card">
+        <table class="table">
+          <thead><tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Status</th></tr></thead>
+          <tbody id="cal-body"><tr><td colspan="5">Laden…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
 
-  <!-- EP CHECKLIST -->
-  <section id="tasks" class="content-panel hidden">
-    <div class="quick-tabs glass-card">
-      <button type="button" id="link-distrokid" class="nav-btn">DISTROKID</button>
-      <button type="button" id="link-amuse" class="nav-btn">AMUSE</button>
-      <button type="button" id="link-buma" class="nav-btn">BUMA/STEMRA</button>
-    </div>
-    <div class="table-container glass-card">
-      <table class="checklist-table">
-        <thead><tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Splits</th><th>Buma/Stemra</th><th>Klaar</th></tr></thead>
-        <tbody id="task-row"><tr><td colspan="7">Laden…</td></tr></tbody>
-      </table>
-      <div id="last-completed" class="last-completed hidden"></div>
-    </div>
-  </section>
+    <section id="tasks" class="hidden">
+      <div class="quick-tabs">
+        <button type="button" id="link-distrokid" class="nav-btn">DISTROKID</button>
+        <button type="button" id="link-amuse" class="nav-btn">AMUSE</button>
+        <button type="button" id="link-buma" class="nav-btn">BUMA/STEMRA</button>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead><tr><th>Datum</th><th>Artiest</th><th>Wie?</th><th>Distributie</th><th>Splits</th><th>Buma/Stemra</th><th>Klaar</th></tr></thead>
+          <tbody id="task-row"><tr><td colspan="7">Laden…</td></tr></tbody>
+        </table>
+        <div id="last-completed" class="hidden" style="padding:12px 14px;"></div>
+      </div>
+    </section>
 
-  <!-- STREAMS (placeholder) -->
-  <section id="streams" class="content-panel hidden">
-    <div class="table-container glass-card">
-      <p>Streams-overzicht komt later. (Nu alleen UI-ready.)</p>
-    </div>
-  </section>
+    <section id="streams" class="hidden">
+      <div class="card" style="padding:18px">Streams-overzicht (placeholder)</div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="home.js" defer></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="home.js" defer></script>
 </html>

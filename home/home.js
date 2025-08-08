@@ -1,30 +1,28 @@
+
 // ==== CONFIG ====
 const MAX_DAYS = 45;
 
-// ---- Storage helpers ----
 function loadStates(){try{return JSON.parse(localStorage.getItem('releaseStates')||'{}')}catch(e){return {}}}
 function saveStates(s){localStorage.setItem('releaseStates',JSON.stringify(s))}
 function setLastCompleted(id){localStorage.setItem('lastCompleted',id||'')}
 function getLastCompleted(){return localStorage.getItem('lastCompleted')||''}
 
-// ---- Data load ----
 async function loadData(){
+  const url = '../data.json';
   try{
-    const raw = await fetch('../data.json').then(r=>r.json());
+    const raw = await fetch(url).then(r=>r.json());
     const st = loadStates();
     return raw.map(([date,name,who,dist])=>{
       const id=`${date}_${name}`;
       const s=st[id]||{};
-      return {id,date,name,who,dist,
-        splits:!!s.splits,buma:!!s.buma,done:!!s.done};
+      return {id,date,name,who,dist,splits:!!s.splits,buma:!!s.buma,done:!!s.done};
     });
   }catch(e){
-    console.error('data.json niet gevonden of ongeldig', e);
+    console.warn('Kan data.json niet laden op', url, e);
     return [];
   }
 }
 
-// ---- Calendar ----
 function renderCal(data){
   const body=document.getElementById('cal-body'); body.innerHTML='';
   const today=new Date();
@@ -37,9 +35,8 @@ function renderCal(data){
       body.appendChild(tr);
     }
   });
-  if(!body.children.length){body.innerHTML='<tr><td colspan="5">Geen releases in de komende periode.</td></tr>';}
+  if(!body.children.length){body.innerHTML='<tr><td colspan="5">Geen releases in de komende periode.</td></tr>'}
 
-  // long-press logic
   body.querySelectorAll('.status-dot').forEach(dot=>{
     let timer; const id=dot.dataset.id; const t=window._data.find(x=>x.id===id);
     const start=()=>{
@@ -53,7 +50,6 @@ function renderCal(data){
   });
 }
 
-// ---- Checklist ----
 function nextTask(data){
   const user=localStorage.getItem('user')||'';
   const pending=data.filter(d=>d.who===user && !d.done);
@@ -82,49 +78,39 @@ function nextTask(data){
   renderLast(data);
 }
 
-// ---- Persist ----
 function persistState(t,showConfetti){
   const st=loadStates(); st[t.id]={splits:t.splits,buma:t.buma,done:t.done}; saveStates(st);
   showConfetti? (showCongrats(), setLastCompleted(t.id)) : setLastCompleted('');
   renderCal(window._data); nextTask(window._data);
 }
 
-// ---- Undo bar ----
 function renderLast(data){
   const bar=document.getElementById('last-completed');
   const id=getLastCompleted(); const t=data.find(x=>x.id===id&&x.done);
   if(!t){bar.classList.add('hidden'); return;}
-  bar.innerHTML=`Laatste afgerond: ${t.date} – ${t.name} <button id="undo-btn">Herstel</button>`;
+  bar.textContent=`Laatste afgerond: ${t.date} – ${t.name}`;
   bar.classList.remove('hidden');
-  document.getElementById('undo-btn').onclick=()=>{t.done=false; persistState(t,false);};
+  const btn=document.createElement('button'); btn.textContent='Herstel'; btn.className='nav-btn'; btn.onclick=()=>{t.done=false; persistState(t,false);}; bar.appendChild(btn);
 }
 
-// ---- Toast + Confetti ----
 function showCongrats(){
-  if(document.getElementById('toast')) return;
-  const d=document.createElement('div'); d.id='toast'; d.textContent='Hoppa!!! Weer een Kanertje verdiend!';
-  Object.assign(d.style,{position:'fixed',bottom:'20px',right:'20px',padding:'12px 20px',background:'rgba(74,192,107,.9)',color:'#fff',borderRadius:'8px',fontWeight:'bold',boxShadow:'0 4px 8px rgba(0,0,0,.3)'});
-  document.body.appendChild(d);
   if(typeof confetti==='function'){confetti({particleCount:120,spread:70,origin:{y:0.75}});}
-  setTimeout(()=>d.remove(),3000);
 }
 
-// ---- Navigation ----
 function showSection(id){
   ['calendar','tasks','streams'].forEach(s=>document.getElementById(s).classList.toggle('hidden',s!==id));
   document.querySelectorAll('nav .nav-btn').forEach(b=>b.classList.toggle('active',b.id==='view-'+id));
 }
 
-// ---- Init ----
 document.addEventListener('DOMContentLoaded',async()=>{
   document.getElementById('user').textContent=localStorage.getItem('user')||'';
   document.getElementById('logout-btn').onclick=()=>{localStorage.clear();location.href='../';};
 
   document.getElementById('view-cal').onclick   =()=>showSection('calendar');
   document.getElementById('view-tasks').onclick =()=>showSection('tasks');
-  document.getElementById('view-streams').onclick =()=>showSection('streams');
+  document.getElementById('view-streams').onclick=()=>showSection('streams');
   document.getElementById('view-artworks').onclick=()=>window.open('https://drive.google.com/drive/folders/1jZpWCyjCzOlqNfuVA7QrpDu_npU0A8_g','_blank');
-  document.getElementById('view-ads').onclick  =()=>window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1588689962026120','_blank');
+  document.getElementById('view-ads').onclick   =()=>window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1588689962026120','_blank');
 
   document.getElementById('link-distrokid').onclick=()=>window.open('https://distrokid.com/new/','_blank');
   document.getElementById('link-amuse').onclick    =()=>window.open('https://artist.amuse.io/studio','_blank');
