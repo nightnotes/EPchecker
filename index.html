@@ -2,24 +2,38 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Night Notes</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Night Notes – Login</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style_navbtn.css">
-  <script src="script.js" defer></script>
+  <style>
+    body{display:flex;justify-content:center;align-items:center;height:100vh;background:#1b1b29;font-family:sans-serif;}
+    .card{background:#2a2a3b;padding:40px 50px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.4);text-align:center;width:300px;}
+    .card img{width:150px;margin:0 auto 20px;display:block;}
+    select,input,button{width:100%;margin-top:8px;padding:8px 12px;border:none;border-radius:6px;}
+    button{background:#444c9c;color:#fff;font-weight:600;cursor:pointer;}
+    button:hover{background:#5a62c6;}
+  </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo"><img src="Logo nightnotes.png" alt="Night Notes logo"></div>
-    <nav>
-      <button class="nav-btn" onclick="location.href='home/index.html'">RELEASES</button>
-      <button class="nav-btn" onclick="location.href='ep_checklist.html'">EP CHECKLIST</button>
-      <button class="nav-btn" onclick="location.href='artworks.html'">ARTWORKS</button>
-      <button class="nav-btn" onclick="location.href='advertentiebeheer.html'">ADVERTENTIEBEHEER</button>
-      <button class="nav-btn" onclick="location.href='home/streams.html'">STREAMS</button>
-    </nav>
-  </header>
-  <main>
-    <!-- login content remains unchanged -->
-  </main>
+  <div class="card">
+    <img src="Logo nightnotes.png" alt="Night Notes logo">
+    <select id="user">
+      <option value="" disabled selected>Kies account</option>
+      <option value="Nuno">Nuno</option>
+      <option value="Martijn">Martijn</option>
+    </select>
+    <input id="pwd" type="password" placeholder="Wachtwoord">
+    <button id="login-btn">Log in</button>
+  </div>
+  <script>
+    document.getElementById('login-btn').onclick = () => {
+      const user = document.getElementById('user').value;
+      const pwd  = document.getElementById('pwd').value;
+      if (!user)          { alert('Kies een account'); return; }
+      if (pwd !== '123!') { alert('Onjuist wachtwoord'); return; }
+      localStorage.setItem('user', user);
+      location.href = 'home/';
+    };
+  </script>
 </body>
 </html>
